@@ -60,6 +60,6 @@ workflows:
   build:
     jobs:
       - linting
-      - run_specs
+      - run_specs:
           requires:
             - linting
