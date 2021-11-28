@@ -37,7 +37,7 @@ commands:
       - checkout
       - restore_cache:
           key: *bundle_cache
-      - run: bundle install -- path vendor/bundle
+      - run: bundle install --path vendor/bundle
       - save_cache:
           key: *bundle_cache
           paths:
