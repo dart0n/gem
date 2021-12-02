@@ -32,7 +32,13 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   # Uncomment to register a new dependency of your gem
-  # spec.add_dependency "example-gem", "~> 1.0"
+  spec.add_dependency 'fasterer', '~> 0.9'
+  spec.add_dependency 'rake', '~> 13.0'
+  spec.add_dependency 'rspec', '~> 3.0'
+  spec.add_dependency 'rubocop', '~> 1.21'
+  spec.add_dependency 'rubocop-rake', '~> 0.6'
+  spec.add_dependency 'rubocop-rspec', '~> 2.6'
+  spec.add_dependency 'simplecov', '~> 0.21'
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
