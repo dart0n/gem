@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   spec.add_dependency 'fasterer', '~> 0.9'
+  spec.add_dependency 'overcommit', '~> 0.58'
   spec.add_dependency 'rake', '~> 13.0'
   spec.add_dependency 'rspec', '~> 3.0'
   spec.add_dependency 'rubocop', '~> 1.21'

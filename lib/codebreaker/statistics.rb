@@ -2,7 +2,7 @@
 
 require 'yaml'
 
-module Statictics
+module Statistics
   DIR_NAME = 'data'
   FILE_PATH = "./#{DIR_NAME}/stats.yml"
 

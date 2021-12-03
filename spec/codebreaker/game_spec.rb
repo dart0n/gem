@@ -2,25 +2,25 @@
 
 require 'codebreaker'
 
-RSpec.describe Codebreaker::Game do
+RSpec.describe Game do
   let(:game) { described_class.new }
-
-  describe '.secret code' do
-    it 'has a secret code' do
-      expect(game.secret_code).not_to be nil
-    end
-
-    it 'is an array' do
-      expect(game.secret_code).to be_a Array
-    end
-
-    it 'constains 4 digits' do
-      expect(game.secret_code.size).to be 4
-    end
-  end
 
   context 'when .start called' do
     before { game.start('easy') }
+
+    describe '.secret code' do
+      it 'has a secret code' do
+        expect(game.secret_code).not_to be nil
+      end
+
+      it 'is an array' do
+        expect(game.secret_code).to be_a Array
+      end
+
+      it 'constains 4 digits' do
+        expect(game.secret_code.size).to be 4
+      end
+    end
 
     it 'has a difficulty' do
       expect(game.difficulty).not_to be nil
@@ -36,9 +36,8 @@ RSpec.describe Codebreaker::Game do
   end
 
   context 'when .registration called' do
-    it "doesn't set name for @user if 'name' is invalid" do
-      game.registration('_')
-      expect(game.user).to be nil
+    it "raises error if 'name' is invalid" do
+      expect { game.registration('_') }.to raise_error(ArgumentError)
     end
 
     it "sets name for @user if 'name' valid" do
@@ -48,10 +47,8 @@ RSpec.describe Codebreaker::Game do
   end
 
   context 'when .guess called' do
-    it "doesn't change attempts if user number is invalid" do
-      before_attempts = game.attempts
-      game.guess([''])
-      expect(game.attempts).to be before_attempts
+    it 'raises error if user number is invalid' do
+      expect { game.guess(['']) }.to raise_error(ArgumentError)
     end
 
     it 'decrements @attempts if user number is valid' do
@@ -78,4 +75,16 @@ RSpec.describe Codebreaker::Game do
       expect(before_hints - 1).to be game.hints
     end
   end
+
+  # context 'when .save_stats called' do
+  #   before { game.start('easy') }
+
+  #   let(:data) do
+  #     { name: 'test', difficulty: 'easy', attempts_total: 15, attempts_used: 5, hints_total: 1, hints_used: 0 }
+  #   end
+
+  #   it 'invokes .save method' do
+  #     expect(game).to have_received(:save).with(data)
+  #   end
+  # end
 end
