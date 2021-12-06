@@ -12,7 +12,6 @@ class Game
     @difficulty = difficulty
     @attempts = DIFFICULTIES[difficulty.to_sym][:attempts]
     @hints = DIFFICULTIES[difficulty.to_sym][:hints]
-    @hints_values = @secret_code.sample(@hints)
     @status = PLAYING
   end
 
@@ -33,7 +32,7 @@ class Game
     return if @hints.zero?
 
     @hints -= 1
-    @hints_values.pop
+    @secret_code[@hints + 1]
   end
 
   def save_stats
@@ -55,13 +54,15 @@ class Game
   private
 
   def generate_code
-    Array.new(4).map { rand(1..6) }
+    Array.new(CODE_LENGTH).map { rand(MIN_DIGIT..MAX_DIGIT) }
   end
 
   def generate_guess_result(user_number)
-    result = user_number.map.with_index do |digit, index|
-      if @secret_code.any? digit
-        @secret_code[index] == digit ? SAME_POSITION : NOT_SAME_POSITION
+    code = @secret_code.dup
+    result = user_number.each_with_object([]).with_index do |(digit, array), index|
+      if code.any? digit
+        array << (code[index] == digit ? SAME_POSITION : NOT_SAME_POSITION)
+        code.collect! { |item| item if item != digit } # remove other duplicated digits
       end
     end
     result.compact.sort.join

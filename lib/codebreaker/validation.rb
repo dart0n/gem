@@ -4,7 +4,7 @@ module Validation
   include Constants
 
   def name_valid?(name)
-    (name.size >= 3 && name.size <= 20) || raise(ArgumentError)
+    (name.size >= MIN_NAME_SIZE && name.size <= MAX_NAME_SIZE) || raise(ArgumentError)
   end
 
   def code_valid?(code)

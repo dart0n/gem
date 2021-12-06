@@ -18,4 +18,7 @@ module Constants
   MIN_DIGIT = 1
   MAX_DIGIT = 6
   CODE_LENGTH = 4
+
+  MIN_NAME_SIZE = 3
+  MAX_NAME_SIZE = 20
 end
