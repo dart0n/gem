@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-require 'codebreaker'
+require 'ffaker'
+require 'simplecov'
+
+SimpleCov.start
+SimpleCov.minimum_coverage 95
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
